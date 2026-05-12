@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DiagramForge — How to Get Started</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #3b82f6;
+      --indigo:  #6366f1;
+      --purple:  #8b5cf6;
+      --green:   #10b981;
+      --orange:  #f59e0b;
+      --pink:    #ec4899;
+      --dark:    #0f172a;
+      --mid:     #1e293b;
+      --muted:   #64748b;
+      --border:  #e2e8f0;
+      --surface: #f8fafc;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      padding: 80px 40px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 50%, rgba(99,102,241,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 80% 50%, rgba(59,130,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(99,102,241,0.2);
+      border: 1px solid rgba(99,102,241,0.4);
+      border-radius: 99px;
+      padding: 5px 14px;
+      font-size: 12px; font-weight: 600;
+      color: #a5b4fc;
+      margin-bottom: 24px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #818cf8, #38bdf8, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: #fff;
+      font-size: 15px; font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(99,102,241,0.5); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e2e8f0;
+      font-size: 15px; font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── Container ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── Section ── */
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(24px, 3vw, 36px); font-weight: 800;
+      color: var(--dark); line-height: 1.2;
+      margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--muted); max-width: 560px;
+      line-height: 1.75;
+    }
+    .section-header { margin-bottom: 48px; }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 24px;
+      position: relative;
+    }
+
+    .step:not(:last-child) .step-line {
+      position: absolute;
+      left: 27px; top: 56px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--line-color, #e2e8f0), transparent);
+    }
+
+    .step-number {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 900;
+      color: #fff; flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+
+    .step-body { padding-bottom: 48px; padding-top: 8px; }
+    .step-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .step-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 4px;
+    }
+
+    .step-card-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-card-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-card-row:first-child { padding-top: 0; }
+
+    .step-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+
+    .step-card-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--dark); }
+    .step-card-text span { font-size: 13px; color: var(--muted); }
+
+    /* ── Provider Grid ── */
+    .provider-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .provider-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .provider-card:hover {
+      border-color: #93c5fd;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.08);
+    }
+
+    .provider-emoji { font-size: 28px; margin-bottom: 8px; }
+    .provider-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+    .provider-note { font-size: 12px; color: var(--muted); }
+
+    /* ── Prompt Examples ── */
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .prompt-card {
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prompt-card::before {
+      content: '"';
+      position: absolute; top: -10px; left: 16px;
+      font-size: 80px; font-weight: 900;
+      opacity: 0.12; line-height: 1;
+    }
+
+    .prompt-card p {
+      font-size: 14px; font-weight: 600;
+      line-height: 1.6;
+      position: relative; z-index: 1;
+    }
+
+    .prompt-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      padding: 2px 8px; border-radius: 99px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    .card-blue   { background: #eff6ff; }
+    .card-blue .prompt-tag   { background: #dbeafe; color: #1d4ed8; }
+    .card-blue p { color: #1e40af; }
+
+    .card-purple { background: #f5f3ff; }
+    .card-purple .prompt-tag { background: #ede9fe; color: #6d28d9; }
+    .card-purple p { color: #4c1d95; }
+
+    .card-green  { background: #f0fdf4; }
+    .card-green .prompt-tag  { background: #dcfce7; color: #15803d; }
+    .card-green p { color: #14532d; }
+
+    .card-orange { background: #fffbeb; }
+    .card-orange .prompt-tag { background: #fef3c7; color: #b45309; }
+    .card-orange p { color: #78350f; }
+
+    .card-pink   { background: #fdf2f8; }
+    .card-pink .prompt-tag   { background: #fce7f3; color: #9d174d; }
+    .card-pink p { color: #831843; }
+
+    .card-teal   { background: #f0fdfa; }
+    .card-teal .prompt-tag   { background: #ccfbf1; color: #0f766e; }
+    .card-teal p { color: #134e4a; }
+
+    /* ── Tips ── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .tip-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .tip-icon { font-size: 28px; margin-bottom: 12px; }
+    .tip-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .tip-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ── Download Banner ── */
+    .download-banner {
+      background: linear-gradient(135deg, #1e1b4b, #0f2a1e);
+      border-radius: 24px;
+      padding: 48px;
+      text-align: center;
+      margin: 0 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 500px 300px at 50% 0%, rgba(99,102,241,0.2), transparent 60%);
+    }
+
+    .download-banner h2 {
+      font-size: 28px; font-weight: 800;
+      color: #fff; margin-bottom: 8px;
+      position: relative;
+    }
+
+    .download-banner p {
+      color: #94a3b8; font-size: 15px; margin-bottom: 32px;
+      position: relative;
+    }
+
+    .download-btns {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 24px; border-radius: 12px;
+      font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: transform 0.15s;
+    }
+    .dl-btn:hover { transform: translateY(-2px); }
+
+    .dl-btn-win {
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+    }
+
+    .dl-btn-mac {
+      background: linear-gradient(135deg, #374151, #111827);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dl-note {
+      font-size: 12px; color: #475569;
+      margin-top: 16px; position: relative;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: var(--muted);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer strong { color: var(--blue); }
+    .footer a { color: var(--blue); text-decoration: none; }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 60px 24px 80px; }
+      .container { padding: 0 24px; }
+      .download-banner { padding: 32px 24px; }
+      .footer { padding: 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Hero ── -->
+  <div class="hero">
+    <div class="hero-badge">✦ Free Desktop App · v1.0.2</div>
+    <h1>Talk to your diagrams.<br><span>They listen.</span></h1>
+    <p class="hero-sub">
+      DiagramForge combines the full draw.io editor with AI chat — describe what you want,
+      watch the diagram update. No fighting arrows. No hunting for shapes. Just design.
+    </p>
+    <div class="hero-btns">
+      <a href="https://github.com/dataamigos/diagramforge-releases/releases/latest" class="btn-primary">
+        ⬇ Download Free
+      </a>
+      <a href="#how-to-use" class="btn-secondary">
+        How to Use →
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Getting Started ── -->
+  <div class="container">
+    <div class="section" id="how-to-use">
+      <div class="section-header">
+        <div class="section-label" style="color: var(--indigo)">Get Started</div>
+        <h2 class="section-title">Up and running in 3 steps</h2>
+        <p class="section-sub">No account. No subscription. No telemetry. Just download, install, and describe your first diagram.</p>
+      </div>
+
+      <div class="steps">
+
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="step-line" style="--line-color: #818cf8"></div>
+          <div class="step-number" style="background: linear-gradient(135deg, #6366f1, #818cf8)">1</div>
+          <div class="step-body">
+            <div class="step-title">Download and Install</div>
+            <p class="step-desc">Download the installer for your platform and run it. draw.io is bundled — no internet connection required for diagramming.</p>
+            <div class="step-card">
+              <div class="step-card-row">
+                <div class="step-icon" style="background:#eff6ff">🪟</div>
+                <div class="step-card-text">
+                  <strong>Windows</strong>
+                  <span>Run DiagramForge.Setup.1.0.2.exe — standard Windows installer, installs to Program Files</span>
+                </div>
+              </div>
+              <div class="step-card-row">
+                <div class="step-icon" style="background:#f0fdf4">🍎</div>
+                <div class="step-card-text">
+                  <strong>Windows Portable</strong>
+                  <span>Run DiagramForge.1.0.2.exe directly — no installation needed, runs from anywhere</span>
+                </div>
+              </div>
+              <div class="step-card-row">
+                <div class="step-icon" style="background:#f5f3ff">🍏</div>
+                <div class="step-card-text">
+                  <strong>macOS</strong>
+                  <span>Open DiagramForge.dmg and drag to Applications — coming soon</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+          <div class="step-line" style="--line-color: #60a5fa"></div>
+          <div class="step-number" style="background: linear-gradient(135deg, #3b82f6, #60a5fa)">2</div>
+          <div class="step-body">
+            <div class="step-title">Configure Your AI Provider</div>
+            <p class="step-desc">Click the ⚙ settings icon → <strong>AI Model Configuration</strong>. Add a provider, paste your API key, add a model, and click Test. DiagramForge supports all major AI providers.</p>
+            <div class="provider-grid">
+              <div class="provider-card">
+                <div class="provider-emoji">✨</div>
+                <div class="provider-name">Google Gemini</div>
+                <div class="provider-note">Recommended · Free tier available</div>
+              </div>
+              <div class="provider-card">
+                <div class="provider-emoji">🤖</div>
+                <div class="provider-name">OpenAI</div>
+                <div class="provider-note">GPT-4o & GPT-4</div>
+              </div>
+              <div class="provider-card">
+                <div class="provider-emoji">🧠</div>
+                <div class="provider-name">Anthropic Claude</div>
+                <div class="provider-note">Claude 3.5 & 4</div>
+              </div>
+              <div class="provider-card">
+                <div class="provider-emoji">🏠</div>
+                <div class="provider-name">Ollama</div>
+                <div class="provider-note">100% local · no API key</div>
+              </div>
+              <div class="provider-card">
+                <div class="provider-emoji">🔌</div>
+                <div class="provider-name">Any OpenAI-compatible</div>
+                <div class="provider-note">Bring your own endpoint</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+          <div class="step-number" style="background: linear-gradient(135deg, #10b981, #34d399)">3</div>
+          <div class="step-body">
+            <div class="step-title">Describe Your Diagram</div>
+            <p class="step-desc">Select your model from the dropdown in the chat bar, type what you want in plain English, and hit Enter. The diagram updates instantly. Keep iterating — every message builds on the previous one.</p>
+            <div class="step-card">
+              <div class="step-card-row">
+                <div class="step-icon" style="background:#f0fdf4">💬</div>
+                <div class="step-card-text">
+                  <strong>Type your request in the chat bar</strong>
+                  <span>"Create a C4 container diagram for a microservices e-commerce platform"</span>
+                </div>
+              </div>
+              <div class="step-card-row">
+                <div class="step-icon" style="background:#eff6ff">🔄</div>
+                <div class="step-card-text">
+                  <strong>Iterate naturally</strong>
+                  <span>"Add a Redis cache between the API gateway and the product service"</span>
+                </div>
+              </div>
+              <div class="step-card-row">
+                <div class="step-icon" style="background:#f5f3ff">✏️</div>
+                <div class="step-card-text">
+                  <strong>Edit manually anytime</strong>
+                  <span>The full draw.io editor is always available — drag, resize, style, annotate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Prompt Ideas ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" style="color: var(--purple)">Prompt Ideas</div>
+        <h2 class="section-title">What can you ask DiagramForge?</h2>
+        <p class="section-sub">Anything you'd describe to a colleague at a whiteboard. Here are some prompts to get you started.</p>
+      </div>
+
+      <div class="prompt-grid">
+        <div class="prompt-card card-blue">
+          <div class="prompt-tag">Architecture</div>
+          <p>Draw a C4 context diagram for a banking app with mobile clients, an API gateway, core banking services, and a PostgreSQL database</p>
+        </div>
+        <div class="prompt-card card-purple">
+          <div class="prompt-tag">Microservices</div>
+          <p>Create a microservices diagram with an auth service, order service, inventory service, and a message queue between them</p>
+        </div>
+        <div class="prompt-card card-green">
+          <div class="prompt-tag">Data Flow</div>
+          <p>Show a data pipeline from S3 ingestion through Spark transformation to a Redshift data warehouse with a BI layer on top</p>
+        </div>
+        <div class="prompt-card card-orange">
+          <div class="prompt-tag">Sequence</div>
+          <p>Create a sequence diagram showing user login flow with OAuth2 — client, auth server, resource server, and token refresh</p>
+        </div>
+        <div class="prompt-card card-pink">
+          <div class="prompt-tag">Iterate</div>
+          <p>Add a CDN in front of the load balancer and a read replica for the database — keep the existing layout</p>
+        </div>
+        <div class="prompt-card card-teal">
+          <div class="prompt-tag">Cloud</div>
+          <p>Draw an AWS architecture for a serverless API — API Gateway, Lambda, DynamoDB, and CloudWatch for monitoring</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── Tips ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" style="color: var(--green)">Pro Tips</div>
+        <h2 class="section-title">Get better results faster</h2>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-title">Be specific about diagram type</div>
+          <div class="tip-text">Say "C4 container diagram" or "sequence diagram" rather than just "diagram" — the AI produces much better output when it knows the target format.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🔗</div>
+          <div class="tip-title">Name your components</div>
+          <div class="tip-text">Use real names: "OrderService", "PostgreSQL", "Kafka topic: order-events". Named components give you more precise follow-up edits.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🔄</div>
+          <div class="tip-title">Iterate in small steps</div>
+          <div class="tip-text">One change at a time works better than one massive prompt. Start with the overall structure, then add details layer by layer.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">✨</div>
+          <div class="tip-title">Use Gemini 2.5 Pro</div>
+          <div class="tip-text">For complex architecture diagrams, Gemini 2.5 Pro produces the most accurate draw.io XML. Get a free API key from Google AI Studio.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">📐</div>
+          <div class="tip-title">Ask for layout changes</div>
+          <div class="tip-text">"Arrange the services in a left-to-right flow" or "group the database components at the bottom" — layout instructions work well.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">💾</div>
+          <div class="tip-title">Export as needed</div>
+          <div class="tip-text">Use draw.io's built-in File → Export to save as PNG, SVG, or PDF. Your diagram is a standard draw.io file — compatible with any draw.io viewer.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Download Banner ── -->
+  <div class="container">
+    <div class="download-banner">
+      <h2>Ready to try it?</h2>
+      <p>Free to download. No account. No subscription. Your diagrams stay on your machine.</p>
+      <div class="download-btns">
+        <a href="https://github.com/dataamigos/diagramforge-releases/releases/latest" class="dl-btn dl-btn-win">
+          🪟 Download for Windows
+        </a>
+        <a href="https://github.com/dataamigos/diagramforge-releases/releases/latest" class="dl-btn dl-btn-mac">
+          🍏 Download for macOS
+        </a>
+      </div>
+      <p class="dl-note">Windows 10/11 · macOS 12+ · Bring your own AI API key</p>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    <span>Built by <strong>Venkat Meruva</strong> · Built on <a href="https://github.com/jgraph/drawio">draw.io</a> and <a href="https://github.com/DayuanJiang/next-ai-draw-io">next-ai-draw-io</a> · Apache 2.0</span>
+    <span><a href="https://github.com/dataamigos/diagramforge-releases/issues">Report an issue</a></span>
+  </div>
+
+</body>
+</html>
