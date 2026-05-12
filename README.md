@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/DiagramForge-v1.0.2-6366f1?style=for-the-badge&labelColor=0f172a" alt="Version"/>
 &nbsp;
-<img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20Soon-3b82f6?style=for-the-badge&labelColor=0f172a" alt="Platform"/>
+<img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-3b82f6?style=for-the-badge&labelColor=0f172a" alt="Platform"/>
 &nbsp;
 <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge&labelColor=0f172a" alt="License"/>
 &nbsp;
@@ -19,6 +19,8 @@
 <br/>
 
 [![Download for Windows](https://img.shields.io/badge/⬇️%20Download%20for%20Windows-6366f1?style=for-the-badge)](https://github.com/dataamigos/diagramforge-releases/releases/latest)
+&nbsp;
+[![Download for macOS](https://img.shields.io/badge/⬇️%20Download%20for%20macOS-6366f1?style=for-the-badge)](https://github.com/dataamigos/diagramforge-releases/releases/latest)
 &nbsp;
 [![How to Use](https://img.shields.io/badge/📖%20How%20to%20Use-0f172a?style=for-the-badge)](https://dataamigos.github.io/diagramforge-releases/)
 
@@ -44,7 +46,8 @@ DiagramForge is a **free desktop app** that lets you design and modify architect
 |----------|------|-------|
 | 🪟 **Windows Installer** | `DiagramForge.Setup.1.0.2.exe` | Standard installer |
 | 🪟 **Windows Portable** | `DiagramForge.1.0.2.exe` | No installation needed — just run it |
-| 🍏 **macOS** | Coming soon | — |
+| 🍏 **macOS Intel** | `DiagramForge-1.0.2.dmg` | For Intel Macs |
+| 🍏 **macOS Apple Silicon** | `DiagramForge-1.0.2-arm64.dmg` | For M1/M2/M3 Macs |
 
 **👉 [Go to Latest Release →](https://github.com/dataamigos/diagramforge-releases/releases/latest)**
 
