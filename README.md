@@ -111,14 +111,6 @@ The diagram updates instantly. Keep iterating — every message builds on the pr
 
 ---
 
-## 🏗️ Built On
-
-DiagramForge is built on two excellent Apache 2.0 open source projects:
-
-- **[draw.io](https://github.com/jgraph/drawio)** by JGraph — the industry-standard open-source diagramming engine
-- **[next-ai-draw-io](https://github.com/DayuanJiang/next-ai-draw-io)** by Dayuan Jiang — the AI + draw.io integration foundation
-
----
 
 ## 📋 Requirements
 
