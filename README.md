@@ -115,6 +115,56 @@ The diagram updates instantly. Keep iterating — every message builds on the pr
 ---
 
 
+## 🤖 Use with AI Agents — MCP Server
+
+DiagramForge ships with a built-in **MCP (Model Context Protocol) server** that lets AI coding agents generate and update diagrams as a native tool call — no browser required.
+
+Once the desktop app is installed, point any MCP-compatible agent host at the bundled server:
+
+### Claude Code
+
+Add to `.claude/settings.json` in your project:
+
+```json
+{
+  "mcpServers": {
+    "diagramforge": {
+      "command": "node",
+      "args": ["<path-to-DiagramForge>/packages/mcp-server/dist/index.js", "--no-preview"]
+    }
+  }
+}
+```
+
+### What your agent can do
+
+| Tool | What it does |
+|------|-------------|
+| `start_session` | Open DiagramForge with a live browser preview |
+| `create_new_diagram` | Generate a new diagram from draw.io XML |
+| `edit_diagram` | Add, update, or delete specific elements in an existing diagram |
+| `get_diagram` | Fetch the current diagram XML (including manual edits) |
+| `export_diagram` | Save the diagram as `.drawio`, `.svg`, or `.png` |
+
+### With browser preview (default)
+
+```bash
+# Agent calls start_session → DiagramForge opens in browser
+# Every diagram change appears in real time
+node packages/mcp-server/dist/index.js
+```
+
+### Headless / CI mode
+
+```bash
+# No browser — pure XML in, XML out
+node packages/mcp-server/dist/index.js --no-preview
+```
+
+> 💡 **Tip:** Use `--no-preview` in CI/CD pipelines. Use default (with preview) when you want to watch the agent build diagrams live in the draw.io editor.
+
+---
+
 ## 📋 Requirements
 
 - **Windows:** Windows 10/11 (64-bit)
