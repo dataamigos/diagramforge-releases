@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/DiagramForge-v1.0.2-6366f1?style=for-the-badge&labelColor=0f172a" alt="Version"/>
+<img src="https://img.shields.io/badge/DiagramForge-v1.1.0-6366f1?style=for-the-badge&labelColor=0f172a" alt="Version"/>
 &nbsp;
 <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-3b82f6?style=for-the-badge&labelColor=0f172a" alt="Platform"/>
 &nbsp;
@@ -44,10 +44,10 @@ DiagramForge is a **free desktop app** that lets you design and modify architect
 
 | Platform | File | Notes |
 |----------|------|-------|
-| 🪟 **Windows Installer** | `DiagramForge.Setup.1.0.2.exe` | Standard installer |
-| 🪟 **Windows Portable** | `DiagramForge.1.0.2.exe` | No installation needed — just run it |
-| 🍏 **macOS Intel** | `DiagramForge-1.0.2.dmg` | For Intel Macs |
-| 🍏 **macOS Apple Silicon** | `DiagramForge-1.0.2-arm64.dmg` | For M1/M2/M3 Macs |
+| 🪟 **Windows Installer** | `DiagramForge.Setup.1.1.0.exe` | Standard installer |
+| 🪟 **Windows Portable** | `DiagramForge.1.1.0.exe` | No installation needed — just run it |
+| 🍏 **macOS Intel** | `DiagramForge-1.1.0.dmg` | For Intel Macs |
+| 🍏 **macOS Apple Silicon** | `DiagramForge-1.1.0-arm64.dmg` | For M1/M2/M3 Macs |
 
 **👉 [Go to Latest Release →](https://github.com/dataamigos/diagramforge-releases/releases/latest)**
 
@@ -170,6 +170,27 @@ node packages/mcp-server/dist/index.js --no-preview
 - **Windows:** Windows 10/11 (64-bit)
 - **macOS:** macOS 12+ (coming soon)
 - **AI:** Your own API key for your chosen provider (Gemini free tier works great)
+
+---
+
+## 🆕 What's New in v1.1.0
+
+### Explain This Diagram
+- **Plain-English explanation** of any diagram — click Explain to get a natural language description
+- **Voice narration** — hear the explanation read aloud
+- **Persistent overlay** with copy button for easy sharing
+
+### MCP Server (Claude Code / Agent Integration)
+- Full C4 shape library embedded — proper `mxgraph.c4.person2` persons, exact colors, boundaries
+- Container level default — asking for "C4 diagram" now generates Level 2 with internals
+- Database cylinder shape — PostgreSQL/MySQL/MongoDB etc. correctly use cylinder3 shape
+- External systems placed outside system boundaries (not inside dashed boxes)
+- DiagramForge branding in browser preview (replaces upstream name)
+- Fixed HTML label rendering — `html=1` enforced on all shapes
+
+### Other Fixes
+- `html=1` enforced on all shapes so labels render correctly
+- Various rebranding fixes throughout the app
 
 ---
 
